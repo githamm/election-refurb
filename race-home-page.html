@@ -11,11 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
     body {
         width: 600px;
         margin: 0 auto;
@@ -39,37 +34,75 @@
         font-size: 2.5rem;
         font-weight: 700;
         text-align: center;
+        color: #555;
+        text-transform: uppercase;
+        line-height: 100%;
+        border-top: 5px solid #555;
+        border-bottom: 5px solid #555;
+        padding: 10px;
     }
 
     h3 {
         font-family: 'Roboto Condensed', sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        text-align: center;
         margin-bottom: 0;
+        color: #555;
+        text-transform: uppercase;
+        border-bottom: 3px solid #555;
+        margin-top: 20px;
     }
 
-    table tr td {
+    table tbody tr td {
         background-color: #fafafa;
     }
 
-    table {
-        font-size: .85rem;
-        margin-top: 16px;
+    table tbody,
+    table tfoot,
+    table thead {
+        border: 1px solid #fafafa;
     }
 
-    table > thead {
-        background-color: #eee;
+    table {
+        font-size: .8rem;
+        margin-top: 16px;
+        border-collapse: collapse;
+    }
+
+    table>thead {
+        border-bottom: 2px solid #e4e4e4;
+        border-top: 1px solid #fafafa;
+        background-color: #fafafa;
+    }
+
+    th {
+        text-transform: uppercase;
+        text-align: center !important;
+    }
+
+    .summary thead th td {
+        text-align: left;
+    }
+
+    tbody {
+        border: 1px solid #fafafa;
     }
 
     tr {
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid #e4e4e4;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    td.county {
+        text-align: left;
     }
 
     img {
         margin-top: 30px;
     }
-
     /*th.vertical {
         position: absolute;
         bottom: 55%;
@@ -83,13 +116,13 @@
 
 <body>
     <div style="margin-top:30px;" class="row">
-        <div class="large-12 columsn">
-            <h2>Race Results Home Page Example</h2>
+        <div class="large-12 columns">
+            <h2>Colorado Governor</h2>
         </div>
     </div>
     <div class="row">
         <div class="large-6 medium-6 small-12 columns">
-            <table>
+            <table class="summary">
                 <thead>
                     <tr>
                         <th>Pct</th>
@@ -102,25 +135,25 @@
                     <tr>
                         <td>61%</td>
                         <td>Jared Polis</td>
-                        <td>D</td>
+                        <td>DEM</td>
                         <td>486,321</td>
                     </tr>
                     <tr>
                         <td>36%</td>
                         <td>Walker Stapleton</td>
-                        <td>R</td>
+                        <td>REP</td>
                         <td>132,498</td>
                     </tr>
                     <tr>
                         <td>1%</td>
                         <td>Mickey Mantle</td>
-                        <td>I</td>
+                        <td>IND</td>
                         <td>29,641</td>
                     </tr>
                     <tr>
                         <td>1%</td>
                         <td>Babe Ruth</td>
-                        <td>G</td>
+                        <td>GRN</td>
                         <td>12,893</td>
                     </tr>
                 </tbody>
@@ -132,142 +165,145 @@
             </div>
         </div>
     </div>
-    <hr>
-    <h3>County results</h3>
+    <div class="row">
+        <div class="large-12 columns">
+            <h3>County results</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="large-12 columns">
             <table>
                 <thead>
                     <tr>
                         <th></th>
-                        <th class="vertical">Polis</th>
-                        <th>Stapleton</th>
-                        <th>Mantle</th>
-                        <th>Ruth</th>
+                        <th>DEM</th>
+                        <th>REP</th>
+                        <th>LIB</th>
+                        <th>IND</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Adams</td>
+                        <td class="county">Adams</td>
+                        <td>20%</td>
+                        <td style="background-color:#d98c8c">71%</td>
+                        <td>5%</td>
+                        <td>4%</td>
+                    </tr>
+                    <tr>
+                        <td class="county">Alamosa</td>
+                        <td style="background-color:#8cb3d9">71%</td>
+                        <td>20%</td>
+                        <td>5%</td>
+                        <td>4%</td>
+                    </tr>
+                    <tr>
+                        <td class="county">Arapahoe</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Alamosa</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Arapahoe</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
                         <td>4%</td>
                     </tr>
                     <tr>
-                        <td>Archuleta</td>
-                        <td>71%</td>
-                        <td>20%</td>
-                        <td>5%</td>
-                        <td>4%</td>
-                    </tr>
-                    <tr>
-                        <td>Archuleta</td>
-                        <td>71%</td>
-                        <td>20%</td>
-                        <td>5%</td>
-                        <td>4%</td>
-                    </tr>
-                    <tr>
-                        <td>Archuleta</td>
+                        <td class="county">Archuleta</td>
                         <td>71%</td>
                         <td>20%</td>
                         <td>5%</td>
