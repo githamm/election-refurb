@@ -163,8 +163,8 @@ var map = d3.select(".g-chart").append("svg")
 
 //Load the files
 queue()
-    .defer(d3.json, "us.json")
-    .defer(d3.csv, "maptemplate.csv")
+    .defer(d3.json, "colorado.json")
+    .defer(d3.csv, "county-data.csv")
     .await(ready);
 
 //Moves selection to front
@@ -184,10 +184,10 @@ d3.selection.prototype.moveToBack = function() {
     });
 };
 
-function ready(error, us, maptemplate) {
+function ready(error, colorado, maptemplate) {
     if (error) throw error;
 
-    console.log(us, maptemplate);
+    console.log(colorado, maptemplate);
 
     //Sets color scale
     var numMedian = d3.median(maptemplate, function(d) { return d.num; });
@@ -197,11 +197,11 @@ function ready(error, us, maptemplate) {
 
     //Pair data with state id
     var dataByFIPS = {};
-    maptemplate.forEach(function(d) { dataByFIPS[d.FIPS] = +d.num; });
+    maptemplate.forEach(function(d) { dataByFIPS[d.geoid] = +d.num; });
 
     //Pair state name with state id
     var stateByFIPS = {};
-    maptemplate.forEach(function(d) { stateByFIPS[d.FIPS] = d.state; });
+    maptemplate.forEach(function(d) { stateByFIPS[d.geoid] = d.cname; });
 
     //Appends chart headline
     d3.select(".g-hed").text("Map headline goes here");
@@ -213,7 +213,7 @@ function ready(error, us, maptemplate) {
     map.append("g")
         .attr("class", "states")
         .selectAll("path")
-        .data(topojson.feature(us, us.objects.states).features)
+        .data(topojson.feature(colorado, colorado.objects.lm_cnty).features)
         .enter().append("path")
         .attr("d", path)
         //Color states
