@@ -8,9 +8,8 @@
     <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
 
-    .p {
-        font-family: 'Roboto', sans-serif;
-        text-align: center;
+    body {
+        margin-top: 100px;
     }
 
     .map svg {
@@ -277,16 +276,16 @@
         // var highest_value = Math.max.apply(Math, temp_array);
 
         for (i = 0; i < output.length; i++) {
-            //console.log(data[0]["08001"][0]);
+            //console.log(output[i].value[0].votes);
 
             $('#' + output[i].key)
-                //.css({ 'fill': 'rgba(11, 104, 170,' + output[i].id + ')' })
+                //.css({ 'fill': '#000' + output[i] + ')' })
                 .data('county', output[i]);
         }
 
         $('.map g').mouseover(function(e) {
                 var countyData = $(this).data('county');
-                console.log(countyData);
+                //console.log(countyData);
 
                 var polisVotes = parseFloat(countyData.value[0].votes);
                 var stapletonVotes = parseFloat(countyData.value[1].votes);
