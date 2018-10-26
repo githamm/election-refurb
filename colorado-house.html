@@ -6,10 +6,13 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:700|Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <script src="https://extras.denverpost.com/charts/sports/rockies/vs-league/tabletop.min.js"></script>
+    <script src="https://extras.denverpost.com/charts/sports/rockies/vs-league/sheetsee.js"></script>
     <style>
     body {
         width: 600px;
@@ -38,18 +41,20 @@
         margin-bottom: 0;
     }
 
-    .dem-control {
-        background-color: #336699;
-        height: 25px;
-        width: 25px;
-        margin-right: 6px;
+    .dem-total {
+        font-size: 2.25em;
+        color: #336699;
     }
 
-    .rep-control {
-        background-color: #993333;
-        height: 25px;
-        width: 25px;
-        margin-right: 6px;
+    .rep-total {
+        font-size: 2.25em;
+        color: #993333;
+    }
+
+    .party-name-header {
+        font-size: 1.65em;
+        font-family: 'Roboto';
+        font-weight: 100;
     }
 
     table tr td {
@@ -82,8 +87,8 @@
     .dem-circle,
     .rep-circle,
     .ind-circle {
-        width: 20px;
-        height: 20px;
+        width: 1.5em;
+        height: 1.5em;
         border-radius: 50%;
     }
 
@@ -146,8 +151,9 @@
         .dem-circle,
         .rep-circle,
         .ind-circle {
-            width: 18px;
-            height: 18px;
+
+            width: .6em !important;
+            height: .6em !important;
         }
     }
     </style>
@@ -156,400 +162,144 @@
 <body>
     <div class="row" style="margin-top:30px;">
         <div class="large-12 columns">
-            <h2>Balance of Power Page Example</h2>
-        </div>
-    </div>
-    <!-- <div class="row">
-        <div style="margin-bottom: 0px">
-            <div class="large-6 medium-6 small-6 columns">
-                <p class="big-number-dem">35 DEM</p>
-            </div>
-            <div class="large-6 medium-6 small-6 columns">
-                <p class="big-number-rep">30 REP</p>
-            </div>
-        </div>
-    </div> -->
-    <div class="row">
-        <div class="large-12 columns">
-            <h3><span class="dem-control">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Colorado State House</h3>
+            <h2>Colorado General Assembly</h2>
         </div>
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="6" class="big-number-dem">36 DEM</th>
-                        <th colspan="6" class="big-number-rep">29 REP</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- 
-                    <tr>
-                        <td colspan="6" class="big-number-dem">2018: 39 DEM<br>2016: 35 DEM</th>
-                        <td colspan="6" class="big-number-rep">2018: 26 REP<br>2016: 30 REP</th>
-                    </tr> -->
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <div class="dem-circle" title="District 1"></div>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 2"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 3"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 4"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 5"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 6"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle" title="District 7"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 8"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 9"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 10"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 11"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 12"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3><span></span>State House</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns" id="colorado-house">
+            <script id="colorado-house_template" type="text/html">
+                <table cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th colspan="9"><span class="dem-total">36</span> <span class="party-name-header">Democrats</span></th>
+                            <th colspan="9" style="text-align:right"><span class="party-name-header">Republicans</span> <span class="rep-total">29</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#rows}}
+                        <tr>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col1-party}}-circle" title="District {{col1-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col2-party}}-circle" title="District {{col2-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col3-party}}-circle" title="District {{col3-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col4-party}}-circle" title="District {{col4-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col5-party}}-circle" title="District {{col5-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col6-party}}-circle" title="District {{col6-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col7-party}}-circle" title="District {{col7-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col8-party}}-circle" title="District {{col8-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col9-party}}-circle" title="District {{col9-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col10-party}}-circle" title="District {{col10-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col11-party}}-circle" title="District {{col11-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col12-party}}-circle" title="District {{col12-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col13-party}}-circle" title="District {{col13-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col14-party}}-circle" title="District {{col14-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col15-party}}-circle" title="District {{col15-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col16-party}}-circle" title="District {{col16-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col17-party}}-circle" title="District {{col17-district}}"></div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{results-link}}">
+                                    <div class="{{col18-party}}-circle" title="District {{col18-district}}"></div>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/rows}}
+                    </tbody>
+                </table>
+            </script>
             <p class="note">Dots that are colored differently than their column header are seats that flipped in November 2018</p>
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <div class="large-12 columns">
-            <h3><span class="rep-control">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Colorado State Senate</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-12 columns">
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="6" class="big-number-dem">16 DEM</th>
-                        <th colspan="6" class="big-number-rep">18 REP</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- 
-                    <tr>
-                        <td colspan="6" class="big-number-dem">2018: 39 DEM<br>2016: 35 DEM</th>
-                        <td colspan="6" class="big-number-rep">2018: 26 REP<br>2016: 30 REP</th>
-                    </tr> -->
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <div class="dem-circle" title="District 1"></div>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 2"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 3"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 4"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 5"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 6"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle" title="District 7"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 8"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 9"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 10"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 11"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle" title="District 12"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="dem-circle"></div>
-                        </td>
-                        <td>
-                            <div class="ind-circle"></div>
-                        </td>
-                        <td></td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                        <td>
-                            <div class="rep-circle"></div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="note">Senate District 20 is represented by Cheri Jahn, an independent who is not seeking re-election</p>
-        </div>
-    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var URL = "1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM"
+        Tabletop.init({ key: URL, callback: showInfo, simpleSheet: true })
+    })
+
+    function showInfo(data) {
+        console.log(data);
+        var tableOptions = {
+            "data": data,
+            // "pagination": 10,
+            "tableDiv": "#colorado-house",
+            // "filterDiv": "#fullTableFilter"
+        }
+        console.log(data);
+        Sheetsee.makeTable(tableOptions)
+        // Sheetsee.initiateTableFilter(tableOptions)
+    }
+    </script>
 </body>
 
 </html>
