@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="refresh" content="300">
     <title>Colorado Legislature Balance of Power | The Denver Post</title>
     <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:700|Roboto+Mono" rel="stylesheet">
@@ -133,13 +134,21 @@
         font-size: .8rem;
         color: #aaa;
         font-style: italic;
-        text-align: right;
+    }
+
+    a {
+        color: #fafafa;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: orange;
     }
     </style>
     <script>
-    // Democrats
-    function displayHouseDemocrats(json) {
-        var pre_html = '<table id = "school-closures"><tbody><tr><th colspan="6">';
+    // Senate Democrats
+    function displaySenateDemocrats(json) {
+        var pre_html = '<table id="senate-democrats"><tbody><tr><th colspan="6">';
         var actual_html = '';
         var post_html = '</tbody></table>'
         var len = json.feed.entry.length
@@ -147,7 +156,7 @@
         for (var i = 0; i < len; i++) {
             actual_html += [
                 '<tr>',
-                '<td><div class=', json.feed.entry[i].gsx$col1party.$t, '>', json.feed.entry[i].gsx$col1district.$t, '</div></td>',
+                '<td><a href="', json.feed.entry[i].gsx$col1link.$t, '" target="_top">', '<div class=', json.feed.entry[i].gsx$col1party.$t, '>', json.feed.entry[i].gsx$col1district.$t, '</div></a></td>',
                 '<td><div class=', json.feed.entry[i].gsx$col2party.$t, '>', json.feed.entry[i].gsx$col2district.$t, '</div></td>',
                 '<td><div class=', json.feed.entry[i].gsx$col3party.$t, '>', json.feed.entry[i].gsx$col3district.$t, '</div></td>',
                 '<td><div class=', json.feed.entry[i].gsx$col4party.$t, '>', json.feed.entry[i].gsx$col4district.$t, '</div></td>',
@@ -156,12 +165,55 @@
                 '</tr>'
             ].join('');
         }
-        document.getElementById('house-democrats').innerHTML = pre_html + '<h2 class="party-name-header">' + '<span class="big-number-dem">' + json.feed.entry[0].gsx$demtotal.$t + '</span> Democrats</h2></th></tr>' + actual_html + post_html
+        document.getElementById('senate-democrats').innerHTML = pre_html + '<h2 class="party-name-header">' + '<span class="big-number-dem">' + json.feed.entry[0].gsx$demtotal.$t + '</span> Democrats</h2></th></tr>' + actual_html + post_html + '<p class="note">Updated at ' + json.feed.entry[0].gsx$updated.$t + '</p>'
     }
 
-    // Republicans
+    // Senate Republicans
+    function displaySenateRepublicans(json) {
+        var pre_html = '<table id="senate-republicans"><tbody><tr><th colspan="6">';;
+        var actual_html = '';
+        var post_html = '</tbody></table>'
+        var len = json.feed.entry.length
+
+        for (var i = 0; i < len; i++) {
+            actual_html += [
+                '<tr>',
+                '<td><div class=', json.feed.entry[i].gsx$col7party.$t, '>', json.feed.entry[i].gsx$col7district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col8party.$t, '>', json.feed.entry[i].gsx$col8district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col9party.$t, '>', json.feed.entry[i].gsx$col9district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col10party.$t, '>', json.feed.entry[i].gsx$col10district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col11party.$t, '>', json.feed.entry[i].gsx$col11district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col12party.$t, '>', json.feed.entry[i].gsx$col12district.$t, '</div></td>',
+                '</tr>'
+            ].join('');
+        }
+        document.getElementById('senate-republicans').innerHTML = pre_html + '<h2 class="party-name-header" style="text-align: right;">Republicans ' + '<span class="big-number-rep">' + json.feed.entry[0].gsx$reptotal.$t + '</span></h2></th></tr>' + actual_html + post_html
+    }
+    // House Democrats
+    function displayHouseDemocrats(json) {
+        var pre_html = '<table id="house-democrats"><tbody><tr><th colspan="6">';
+        var actual_html = '';
+        var post_html = '</tbody></table>'
+        var len = json.feed.entry.length
+
+        for (var i = 0; i < len; i++) {
+            actual_html += [
+                '<tr>',
+                '<td><a href="', json.feed.entry[i].gsx$col1link.$t, '" target="_top">', '<div class=', json.feed.entry[i].gsx$col1party.$t, '>', json.feed.entry[i].gsx$col1district.$t, '</div></a></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col2party.$t, '>', json.feed.entry[i].gsx$col2district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col3party.$t, '>', json.feed.entry[i].gsx$col3district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col4party.$t, '>', json.feed.entry[i].gsx$col4district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col5party.$t, '>', json.feed.entry[i].gsx$col5district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col6party.$t, '>', json.feed.entry[i].gsx$col6district.$t, '</div></td>',
+                '</tr>'
+            ].join('');
+        }
+        document.getElementById('house-democrats').innerHTML = pre_html + '<h2 class="party-name-header">' + '<span class="big-number-dem">' + json.feed.entry[0].gsx$demtotal.$t + '</span> Democrats</h2></th></tr>' + actual_html + post_html + '<p class="note">Updated at ' + json.feed.entry[0].gsx$updated.$t + '</p>'
+    }
+
+    // House Republicans
     function displayHouseRepublicans(json) {
-        var pre_html = '<table id = "house-republicans"><tbody><tr><th colspan="6">';;
+        var pre_html = '<table id="house-republicans"><tbody><tr><th colspan="6">';;
         var actual_html = '';
         var post_html = '</tbody></table>'
         var len = json.feed.entry.length
@@ -184,19 +236,47 @@
 </head>
 
 <body>
+    <!-- Colorado State Senate -->
     <div class="row">
+        <div class="large-12 colums">
+            <h2 class="table-title">Colorado State Senate</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 colums">
+            <p class="note" style="text-align: right"><span style="border:1px solid #aaa;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;Current party &rarr; <span style="border:1px solid #aaa;border-radius:50%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;2018 winner</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-container">
+            <!-- Senate Democrats -->
+            <div class="large-6 medium-6 small-6 columns" style="border-right: 2px solid #ddd">
+                <div id="senate-democrats">
+                    <script src="https://spreadsheets.google.com/feeds/list/1RPcRaUJuXZXxeq_l9Ck1W9UMnf3WVI15spBinoGMg-o/od6/public/values?alt=json-in-script&amp;callback=displaySenateDemocrats"></script>
+                </div>
+            </div>
+            <!-- Senate Republicans -->
+            <div class="large-6 medium-6 small-6 columns" style="padding-left: 8px">
+                <div id="senate-republicans">
+                    <script src="https://spreadsheets.google.com/feeds/list/1RPcRaUJuXZXxeq_l9Ck1W9UMnf3WVI15spBinoGMg-o/od6/public/values?alt=json-in-script&amp;callback=displaySenateRepublicans"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Colorado State House -->
+    <div class="row" style="margin-top: 50px">
         <div class="large-12 colums">
             <h2 class="table-title">Colorado State House</h2>
         </div>
     </div>
     <div class="row">
         <div class="large-12 colums">
-            <p class="note"><span style="border:1px solid #aaa;border-radius:50%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;Current party &rarr; <span style="border:1px solid #aaa">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;2018 result</p>
+            <p class="note" style="text-align: right"><span style="border:1px solid #aaa;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;Current party &rarr; <span style="border:1px solid #aaa;border-radius:50%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;2018 winner</p>
         </div>
     </div>
-    <!-- Democrats -->
     <div class="row">
         <div class="table-container">
+            <!-- Democrats -->
             <div class="large-6 medium-6 small-6 columns" style="border-right: 2px solid #ddd">
                 <div id="house-democrats">
                     <script src="https://spreadsheets.google.com/feeds/list/1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM/od6/public/values?alt=json-in-script&amp;callback=displayHouseDemocrats"></script>
