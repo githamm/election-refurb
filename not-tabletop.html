@@ -5,93 +5,14 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Colorado Legislature Balance of Power | The Denver Post</title>
     <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:700|Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
     <script src="http://extras.denverpost.com/foundation/js/vendor/modernizr.js"></script>
-    <script type='text/javascript'>
-    //Write a function that allows us to add commas to raw numbers in spreadsheet for display.  2413 becomes 2,413.
-    function addCommas(nStr) {
-        nStr += '';
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
-    }
-
-    // SCHOOLS
-    //this will be executed after we "fetch" the contents of a spreadsheet. The json parameter will hold our spreadsheet's data
-    function displayContentSchools(json) {
-        console.log(json.feed.entry[0].gsx$demtotal.$t);
-        //start an html table and write out our headers.  Using <td> tags so it isn't bold and centered, which is the <th> default.
-        //var pre_html = '<table id = "school-closures"><tr><td>School district</td><td>Status</td></thead><tbody>';
-        //same as above but gets rid of column headers
-        var pre_html = '<table id = "school-closures"><tbody><tr><th colspan="6">';
-        //Create an empty string to hold the HTML. We will put table data here.
-        var actual_html = '';
-        //After we grab the table, close the HTML table.
-        var post_html = '</tbody></table>'
-        //figure out how many rows our spreadsheet has
-        var len = json.feed.entry.length
-
-        //loop through the spreadsheet, gathering data
-        for (var i = 0; i < len; i++) {
-            //for each row, add the following to actual HTML, grabbing it as a list, and then joining the list together as one long string.
-            //Uses HTML for table cells, and then grabs attributes from the spreadsheet, using appropriate syntax. Enter your table header in the Google spreadsheet between            
-            //the gsx$ and .$t.
-            actual_html += [
-                '<tr>',
-                '<td><div class=', json.feed.entry[i].gsx$col1party.$t, '-circle>', json.feed.entry[i].gsx$col1district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col2party.$t, '-circle>', json.feed.entry[i].gsx$col2district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col3party.$t, '-circle>', json.feed.entry[i].gsx$col3district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col4party.$t, '-circle>', json.feed.entry[i].gsx$col4district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col5party.$t, '-circle>', json.feed.entry[i].gsx$col5district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col6party.$t, '-circle>', json.feed.entry[i].gsx$col6district.$t, '</div></td>',
-                '</tr>'
-            ].join('');
-        }
-        //put all three of our HTML strings into our div we made at the top of the page
-        document.getElementById('school-list').innerHTML = pre_html + '<h2 class="party-name-header">' + '<span class="big-number-dem">' + json.feed.entry[0].gsx$demtotal.$t + '</span> Democrats</h2></th></tr>' + actual_html + post_html
-    }
-
-    function displayContentSchools2(json) {
-        //start an html table and write out our headers.  Using <td> tags so it isn't bold and centered, which is the <th> default.
-        //var pre_html = '<table id = "school-closures"><tr><td>School district</td><td>Status</td></thead><tbody>';
-        //same as above but gets rid of column headers
-        var pre_html = '<table id = "school-closures-2"><tbody><tr><th colspan="6">';;
-        //Create an empty string to hold the HTML. We will put table data here.
-        var actual_html = '';
-        //After we grab the table, close the HTML table.
-        var post_html = '</tbody></table>'
-        //figure out how many rows our spreadsheet has
-        var len = json.feed.entry.length
-
-        //loop through the spreadsheet, gathering data
-        for (var i = 0; i < len; i++) {
-            //for each row, add the following to actual HTML, grabbing it as a list, and then joining the list together as one long string.
-            //Uses HTML for table cells, and then grabs attributes from the spreadsheet, using appropriate syntax. Enter your table header in the Google spreadsheet between            
-            //the gsx$ and .$t.
-            actual_html += [
-                '<tr>',
-                '<td><div class=', json.feed.entry[i].gsx$col7party.$t, '-circle>', json.feed.entry[i].gsx$col7district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col8party.$t, '-circle>', json.feed.entry[i].gsx$col8district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col9party.$t, '-circle>', json.feed.entry[i].gsx$col9district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col10party.$t, '-circle>', json.feed.entry[i].gsx$col10district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col11party.$t, '-circle>', json.feed.entry[i].gsx$col11district.$t, '</div></td>',
-                '<td><div class=', json.feed.entry[i].gsx$col12party.$t, '-circle>', json.feed.entry[i].gsx$col12district.$t, '</div></td>',
-                '</tr>'
-            ].join('');
-        }
-        //put all three of our HTML strings into our div we made at the top of the page
-        document.getElementById('school-list-2').innerHTML = pre_html + '<h2 class="party-name-header" style="text-align: right;">Republicans ' + '<span class="big-number-rep">' + json.feed.entry[0].gsx$reptotal.$t + '</span></h2></th></tr>' + actual_html + post_html
-    }
-    </script>
     <style>
     body {
         width: 600px;
@@ -104,13 +25,6 @@
         font-family: 'Roboto Condensed', sans-serif;
         font-size: 2.75rem;
         font-weight: 700;
-    }
-
-    h3 {
-        font-family: 'Roboto Condensed', sans-serif;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0;
     }
 
     .dem-total {
@@ -143,9 +57,6 @@
     }
 
     table tbody {
-        /*font-size: .85rem;
-        margin-top: 16px;
-        border-collapse: inherit;*/
         border: none;
     }
 
@@ -153,11 +64,7 @@
         background-color: #fafafa;
     }
 
-    tr {
-        /*border-bottom: 1px solid #f1f1f1;*/
-    }
-
-     tbody tr td {
+    tbody tr td {
         text-align: center;
         padding: 5px;
         color: #eee;
@@ -174,18 +81,30 @@
         height: 2.2em;
         border-radius: 50%;
         margin: 0;
-        padding-top: 5px;
+        padding-top: 6px;
     }
 
-    .dem-circle {
+    .dem-square,
+    .rep-square,
+    .ind-square {
+        width: 2.2em;
+        height: 2.2em;
+        margin: 0;
+        padding-top: 6px;
+    }
+
+    .dem-circle,
+    .dem-square {
         background-color: #336699;
     }
 
-    .rep-circle {
+    .rep-circle,
+    .rep-square {
         background-color: #993333;
     }
 
-    .ind-circle {
+    .ind-circle,
+    .ind-square {
         background-color: #ccc;
     }
 
@@ -209,14 +128,6 @@
         background-color: #ccc;
         border-left: 2px solid #fff;
     }
-    /*th.vertical {
-        position: absolute;
-        bottom: 55%;
-        left: 50%;
-        webkit-transform: translateX(-50%) translateY(50%) rotate(-90deg);
-        transform: translateX(-50%) translateY(50%) rotate(-90deg);
-        width: 70%;
-    }*/
 
     .note {
         font-size: .8rem;
@@ -224,28 +135,74 @@
         font-style: italic;
     }
     </style>
+    <script>
+    // Democrats
+    function displayHouseDemocrats(json) {
+        var pre_html = '<table id = "school-closures"><tbody><tr><th colspan="6">';
+        var actual_html = '';
+        var post_html = '</tbody></table>'
+        var len = json.feed.entry.length
+
+        for (var i = 0; i < len; i++) {
+            actual_html += [
+                '<tr>',
+                '<td><div class=', json.feed.entry[i].gsx$col1party.$t, '>', json.feed.entry[i].gsx$col1district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col2party.$t, '>', json.feed.entry[i].gsx$col2district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col3party.$t, '>', json.feed.entry[i].gsx$col3district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col4party.$t, '>', json.feed.entry[i].gsx$col4district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col5party.$t, '>', json.feed.entry[i].gsx$col5district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col6party.$t, '>', json.feed.entry[i].gsx$col6district.$t, '</div></td>',
+                '</tr>'
+            ].join('');
+        }
+        document.getElementById('house-democrats').innerHTML = pre_html + '<h2 class="party-name-header">' + '<span class="big-number-dem">' + json.feed.entry[0].gsx$demtotal.$t + '</span> Democrats</h2></th></tr>' + actual_html + post_html
+    }
+
+    // Republicans
+    function displayHouseRepublicans(json) {
+        var pre_html = '<table id = "house-republicans"><tbody><tr><th colspan="6">';;
+        var actual_html = '';
+        var post_html = '</tbody></table>'
+        var len = json.feed.entry.length
+
+        for (var i = 0; i < len; i++) {
+            actual_html += [
+                '<tr>',
+                '<td><div class=', json.feed.entry[i].gsx$col7party.$t, '>', json.feed.entry[i].gsx$col7district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col8party.$t, '>', json.feed.entry[i].gsx$col8district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col9party.$t, '>', json.feed.entry[i].gsx$col9district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col10party.$t, '>', json.feed.entry[i].gsx$col10district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col11party.$t, '>', json.feed.entry[i].gsx$col11district.$t, '</div></td>',
+                '<td><div class=', json.feed.entry[i].gsx$col12party.$t, '>', json.feed.entry[i].gsx$col12district.$t, '</div></td>',
+                '</tr>'
+            ].join('');
+        }
+        document.getElementById('house-republicans').innerHTML = pre_html + '<h2 class="party-name-header" style="text-align: right;">Republicans ' + '<span class="big-number-rep">' + json.feed.entry[0].gsx$reptotal.$t + '</span></h2></th></tr>' + actual_html + post_html
+    }
+    </script>
 </head>
+
 <body>
     <div class="row">
         <div class="large-12 colums">
             <h2 class="table-title">Colorado State House</h2>
         </div>
     </div>
+    <!-- Democrats -->
     <div class="row">
         <div class="table-container">
-        <div class="large-6 medium-6 small-6 columns" style="border-right: 2px solid #ddd">
-            <div id="school-list">
-                <!-- Grab the data from our google spreadsheet, using the callback to call the function we just created -->
-                <script src="https://spreadsheets.google.com/feeds/list/1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM/od6/public/values?alt=json-in-script&amp;callback=displayContentSchools" type="text/javascript "></script>
+            <div class="large-6 medium-6 small-6 columns" style="border-right: 2px solid #ddd">
+                <div id="house-democrats">
+                    <script src="https://spreadsheets.google.com/feeds/list/1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM/od6/public/values?alt=json-in-script&amp;callback=displayHouseDemocrats"></script>
+                </div>
+            </div>
+            <!-- Republicans -->
+            <div class="large-6 medium-6 small-6 columns" style="padding-left: 8px">
+                <div id="house-republicans">
+                    <script src="https://spreadsheets.google.com/feeds/list/1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM/od6/public/values?alt=json-in-script&amp;callback=displayHouseRepublicans"></script>
+                </div>
             </div>
         </div>
-        <div class="large-6 medium-6 small-6 columns" style="padding-left: 8px">
-            <div id="school-list-2">
-                <!-- Grab the data from our google spreadsheet, using the callback to call the function we just created -->
-                <script src="https://spreadsheets.google.com/feeds/list/1RTCowN56kfE8kcoLPif4IrnG31ZIQJ7tQp34y4c-4KM/od6/public/values?alt=json-in-script&amp;callback=displayContentSchools2" type="text/javascript "></script>
-            </div>
-        </div>
-    </div>
     </div>
     <script src="http://extras.denverpost.com/foundation/js/foundation.min.js "></script>
     <script>
